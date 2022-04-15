@@ -1,0 +1,31 @@
+﻿<Window x:Class="NegocioRapido.View.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NegocioRapido.View"
+        mc:Ignorable="d"
+        Title="Negocio Rapido - Login" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/View/Fondo.jpg" TileMode="FlipY"/>
+        </Grid.Background>
+        <Border BorderBrush="#FF1C3A4A" BorderThickness="3" CornerRadius="25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="400" Background="#7FFFD261">
+            <StackPanel >
+                <Image Height="100" Width="100"/>
+                <StackPanel Height="250" Width="250">
+                    <Label Content="Nombre De Usuario"/>
+                    <TextBox x:Name="boxNombreUsuario" TextWrapping="Wrap" Text="TextBox" KeyDown="enter_iniciar_sesion">
+                        <TextBox.Effect>
+                            <DropShadowEffect/>
+                        </TextBox.Effect>
+                    </TextBox>
+                    <Label Content="Contraseña&#xD;&#xA;"/>
+                    <PasswordBox x:Name="boxContraseña" KeyDown="enter_iniciar_sesion" />
+                    <Button x:Name="btnIniciarSesion"  Content="Iniciar Sesion" Template="{DynamicResource btnAzul}" Height="38" Width="146" Margin="0 20 10 8" Click="btnIniciarSesion_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

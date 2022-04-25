@@ -1,0 +1,352 @@
+﻿<Window
+    x:Class="NegocioRapido.View.Main"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Main"
+    Width="900"
+    Height="500"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="CanResizeWithGrip"
+    WindowStyle="None"
+    mc:Ignorable="d" WindowStartupLocation="Manual">
+    <Window.Resources>
+        <Style x:Key="font_style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="View/Recursos/Roboto-Regular.ttf #Roboto" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="#C08900" />
+            <Setter Property="FontSize" Value="20" />
+
+        </Style>
+        <Style x:Key="tt_style" TargetType="ToolTip">
+            <Setter Property="Placement" Value="Right" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Margin" Value="20,0,0,0" />
+            <Setter Property="Background" Value="#d4d4d4" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Foreground" Value="#C08900" />
+            <Setter Property="FontFamily" Value="View/Recursos/Roboto-Regular.ttf #Roboto" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="HorizontalOffset" Value="15" />
+            <Setter Property="VerticalOffset" Value="6" />
+            <Setter Property="HasDropShadow" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+
+        </Style>
+        <ImageBrush
+            x:Key="imagen_btn_cerrar"
+            ImageSource="/View/Recursos/Iconos/IconoXRed.png"
+            Stretch="Fill" />
+        <Style x:Key="btn_cerrar" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border
+                            x:Name="button"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="0"
+                            SnapsToDevicePixels="True" />
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="button" Property="Background" Value="{StaticResource imagen_btn_cerrar}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </Window.Resources>
+    <Border
+        BorderBrush="#FFD261"
+        BorderThickness="7"
+        CornerRadius="1">
+        <Grid Background="#FFD261">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <!--  panel lateral  -->
+            <DockPanel
+                x:Name="nav_pn1"
+                Grid.Row="0"
+                Grid.RowSpan="5"
+                Grid.Column="0"
+                Width="65">
+                <StackPanel x:Name="barra_lateral">
+                    <!--  boton de abrir y cerrar panel lateral  -->
+                    <Grid Height="90">
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="73,-20,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            Style="{StaticResource font_style}"
+                            Text="M E N U">
+                            <TextBlock.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="10"
+                                    Direction="-90"
+                                    ShadowDepth="1"
+                                    Color="#FFC89315" />
+                            </TextBlock.Effect>
+
+                        </TextBlock>
+                        <ToggleButton
+                            x:Name="togle"
+                            Grid.Column="0"
+                            Width="30"
+                            Height="30"
+                            Margin="18,-20,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            BorderThickness="0"
+                            Checked="togle_Checked"
+                            Unchecked="togle_Unchecked">
+                            <ToggleButton.Background>
+                                <ImageBrush
+                                    AlignmentX="Left"
+                                    ImageSource="/View/Recursos/Iconos/IconoMenu.png"
+                                    Stretch="Uniform" />
+                            </ToggleButton.Background>
+                            <ToggleButton.Triggers>
+                                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                    <BeginStoryboard>
+                                        <Storyboard x:Name="EsconderStackPanel">
+                                            <DoubleAnimation
+                                                BeginTime="0:0:0"
+                                                Storyboard.TargetName="nav_pn1"
+                                                Storyboard.TargetProperty="Width"
+                                                From="230"
+                                                To="65"
+                                                Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                    <BeginStoryboard>
+                                        <Storyboard x:Name="VerStackPanel">
+                                            <DoubleAnimation
+                                                BeginTime="0:0:0"
+                                                Storyboard.TargetName="nav_pn1"
+                                                Storyboard.TargetProperty="Width"
+                                                From="65"
+                                                To="230"
+                                                Duration="0:0:0.3" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </ToggleButton.Triggers>
+
+                        </ToggleButton>
+                    </Grid>
+                    <!--  lista de botones menu  -->
+                    <ListView
+                        x:Name="ListBotones"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListViewItem
+                            x:Name="btn_home"
+                            Margin="0,0,0,15"
+                            HorizontalAlignment="Left"
+                            MouseEnter="ListViewItem_MouseEnter">
+                            <StackPanel Width="230" Orientation="Horizontal">
+                                <Image
+                                    Width="35"
+                                    Height="35"
+                                    Margin="12,0,0,0"
+                                    Source="/View/Recursos/Iconos/IconoCasa.png"
+                                    Stretch="Fill" />
+                                <TextBlock
+                                    Margin="25,0,0,0"
+                                    Style="{StaticResource font_style}"
+                                    Text="Casa" />
+                            </StackPanel>
+                            <!--  tooltip para menu contraido  -->
+                            <ListViewItem.ToolTip>
+                                <ToolTip Content="Casa" Style="{StaticResource tt_style}" />
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+                        <ListViewItem
+                            Margin="0,0,0,15"
+                            HorizontalAlignment="Left"
+                            MouseEnter="ListViewItem_MouseEnter">
+                            <StackPanel Width="230" Orientation="Horizontal">
+                                <Image
+                                    Width="35"
+                                    Height="35"
+                                    Margin="12,0,0,0"
+                                    Source="/View/Recursos/Iconos/IconoCliente.png"
+                                    Stretch="Fill" />
+                                <TextBlock
+                                    Margin="25,0,0,0"
+                                    Style="{StaticResource font_style}"
+                                    Text="Clientes" />
+                            </StackPanel>
+                            <!--  tooltip para menu contraido  -->
+                            <ListViewItem.ToolTip>
+                                <ToolTip
+                                    x:Name="tt_Clientes"
+                                    Content="Clientes"
+                                    Style="{StaticResource tt_style}" />
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+                        <ListViewItem
+                            Margin="0,0,0,15"
+                            HorizontalAlignment="Left"
+                            MouseEnter="ListViewItem_MouseEnter">
+                            <StackPanel Width="230" Orientation="Horizontal">
+                                <Image
+                                    Width="35"
+                                    Height="35"
+                                    Margin="12,0,0,0"
+                                    Source="/View/Recursos/Iconos/IconoCompra.png"
+                                    Stretch="Fill" />
+                                <TextBlock
+                                    Margin="25,0,0,0"
+                                    Style="{StaticResource font_style}"
+                                    Text="Compras" />
+                            </StackPanel>
+                            <!--  tooltip para menu contraido  -->
+                            <ListViewItem.ToolTip>
+                                <ToolTip Content="Compras" Style="{StaticResource tt_style}" />
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+                        <ListViewItem
+                            Margin="0,0,0,15"
+                            HorizontalAlignment="Left"
+                            MouseEnter="ListViewItem_MouseEnter">
+                            <StackPanel Width="230" Orientation="Horizontal">
+                                <Image
+                                    Width="35"
+                                    Height="35"
+                                    Margin="12,0,0,0"
+                                    Source="/View/Recursos/Iconos/IconoReporte.png"
+                                    Stretch="Fill" />
+                                <TextBlock
+                                    Margin="25,0,0,0"
+                                    Style="{StaticResource font_style}"
+                                    Text="Reportes" />
+                            </StackPanel>
+                            <!--  tooltip para menu contraido  -->
+                            <ListViewItem.ToolTip>
+                                <ToolTip Content="Reportes" Style="{StaticResource tt_style}" />
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+                        <ListViewItem
+                            Margin="0,0,0,15"
+                            HorizontalAlignment="Left"
+                            MouseEnter="ListViewItem_MouseEnter">
+                            <StackPanel Width="230" Orientation="Horizontal">
+                                <Image
+                                    Width="35"
+                                    Height="35"
+                                    Margin="12,0,0,0"
+                                    Source="/View/Recursos/Iconos/IconoReporte.png"
+                                    Stretch="Fill" />
+                                <TextBlock
+                                    Margin="25,0,0,0"
+                                    Style="{StaticResource font_style}"
+                                    Text="Reportes" />
+                            </StackPanel>
+                            <!--  tooltip para menu contraido  -->
+                            <ListViewItem.ToolTip>
+                                <ToolTip Content="Reportes" Style="{StaticResource tt_style}" />
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <Border
+                                                x:Name="BD"
+                                                Height="50"
+                                                Padding="{TemplateBinding Padding}"
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                SnapsToDevicePixels="True">
+                                                <ContentPresenter
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="IsMouseOver" Value="True" />
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter TargetName="BD" Property="Background" Value="#4CFFFFFF" />
+                                                    <Setter TargetName="BD" Property="BorderBrush" Value="transparent" />
+
+                                                </MultiTrigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Style>
+                        </ListView.ItemContainerStyle>
+
+                    </ListView>
+                </StackPanel>
+            </DockPanel>
+            <!--  centro de datos  -->
+            <Border
+                x:Name="contenedor_ventana"
+                Grid.Row="1"
+                Grid.RowSpan="4"
+                Grid.Column="1"
+                Grid.ColumnSpan="4"
+                Background="White"
+                CornerRadius="20" >
+
+            </Border>
+            <!--  botonera de cierre  -->
+            <Grid Grid.Column="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    x:Name="btn_cerrar_venta"
+                    Grid.Column="2"
+                    Width="40"
+                    Height="40"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="Transparent"
+                    Click="btn_cerrar_ventana_Click"
+                    Foreground="#011952"
+                    Style="{StaticResource btn_cerrar}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/View/Recursos/Iconos/IconoXBlue.png" Stretch="Fill" />
+                    </Button.Background>
+
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

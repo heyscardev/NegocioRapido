@@ -8,6 +8,10 @@ namespace NegocioRapido.Model.Data
         public TipoIdentificacion TipoIdentificacion { get; set; }
         [MaxLength(20)]
         public string NumeroIdentficacion { get; set; }
+        [MaxLength(80)]
+        public string RazonSocial { get; set; }
+        [MaxLength(200)]
+        public string? Correo { get; set; }
         [MaxLength(20)]
         public string? Telefono { get; set; }
         [MaxLength(250)]

@@ -12,10 +12,7 @@ namespace NegocioRapido.Model
     public class Proveedor : PersonaBaseData
     {
         public int Id { get; set; }
-        [MaxLength(100)]
-        public string Nombre { get; set; }
-        [MaxLength(200)]
-        public string? Correo { get; set; }
+        
         [MaxLength(200)]
         public string? Descripcion { get; set; }
         //  relations

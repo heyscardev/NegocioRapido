@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="View\Recursos\Iconos\IconoCliente.png" />
+    <None Remove="View\Recursos\Imagenes\Avatar.png" />
+    <None Remove="View\Recursos\Imagenes\Fondo.jpg" />
+    <None Remove="View\Recursos\Imagenes\Logo.png" />
+    <None Remove="View\SplashScreen1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Configuraciones.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="View\cliente\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\Recursos\Iconos\IconoCliente.png" />
+    <Resource Include="View\Recursos\Imagenes\Avatar.png" />
+    <Resource Include="View\Recursos\Imagenes\Fondo.jpg" />
+    <Resource Include="View\Recursos\Imagenes\Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="View\SplashScreen1.png" />
+  </ItemGroup>
+
+</Project>

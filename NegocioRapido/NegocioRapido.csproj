@@ -8,21 +8,42 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="View\cliente\IconoImageAdd.png" />
+    <None Remove="View\close_black_24dp.svg" />
+    <None Remove="View\Recursos\Iconos\door-open-regular-24.png" />
+    <None Remove="View\Recursos\Iconos\IconoCasa.png" />
+    <None Remove="View\Recursos\Iconos\IconoCompra.png" />
+    <None Remove="View\Recursos\Iconos\IconoCompraAdd.png" />
+    <None Remove="View\Recursos\Iconos\IconoImageAdd.png" />
+    <None Remove="View\Recursos\Iconos\IconoProducto.png" />
+    <None Remove="View\Recursos\Iconos\IconoReporte.png" />
+    <None Remove="View\Recursos\Iconos\IconoVentas.png" />
+    <None Remove="View\Recursos\Iconos\IconoXBlue.png" />
+    <None Remove="View\Recursos\Iconos\IconoXRed.png" />
     <None Remove="View\Recursos\Imagenes\Avatar.png" />
     <None Remove="View\Recursos\Imagenes\Fondo.jpg" />
+    <None Remove="View\Recursos\Imagenes\Logo.png" />
+    <None Remove="View\SplashScreen1.png" />
+    <None Remove="View\x-regular-24.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="View\cliente\IconoImageAdd.png" />
+    <Resource Include="View\Recursos\Iconos\IconoImageAdd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\Recursos\Iconos\IconoXBlue.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
@@ -36,12 +57,33 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="View\cliente\" />
+	  <Resource Include="View\close_black_24dp.svg" />
+	  <Resource Include="View\Recursos\Iconos\door-open-regular-24.png" />
+	  <Resource Include="View\Recursos\Iconos\IconoCasa.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="View\Recursos\Iconos\IconoCliente.png" />
+	  <Resource Include="View\Recursos\Iconos\IconoCompra.png" />
+	  <Resource Include="View\Recursos\Iconos\IconoCompraAdd.png" />
+	  <Resource Include="View\Recursos\Iconos\IconoProducto.png" />
+	  <Resource Include="View\Recursos\Iconos\IconoReporte.png" />
+	  <Resource Include="View\Recursos\Iconos\IconoVentas.png" />
+	  <Resource Include="View\Recursos\Iconos\IconoXRed.png" />
+    <Resource Include="View\Recursos\Imagenes\Avatar.png" />
+    <Resource Include="View\Recursos\Imagenes\Fondo.jpg" />
+    <Resource Include="View\Recursos\Imagenes\Logo.png" />
+    <Resource Include="View\Recursos\Iconos\IconoMenu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Recursos\Iconos\IconoCerrar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\x-regular-24.png" />
+  
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="View\Recursos\Imagenes\Avatar.png" />
-    <Resource Include="View\Recursos\Imagenes\Fondo.jpg" />
+    <SplashScreen Include="View\SplashScreen1.png" />
   </ItemGroup>
 
 </Project>

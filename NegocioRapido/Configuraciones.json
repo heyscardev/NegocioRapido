@@ -1,5 +1,5 @@
 {
   "ConnectionsStrings" :{
-    "DefaultConnection" : "server=127.0.0.1;port=3306;database=NegocioRapidoDB;user=root;password=1234567890"
+    "DefaultConnection" : "server=127.0.0.1;port=3306;database=NegocioRapidoDB;user=root;password="
   }
 }

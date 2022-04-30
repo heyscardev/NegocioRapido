@@ -20,8 +20,7 @@ namespace NegocioRapido.Model
         public string Nombre { get; set; }
         [MaxLength(200)]
         public string Apellido { get; set; }
-        [MaxLength(200)]
-        public string Correo { get; set; }
+        public bool status { get; set; }
         
     }
    

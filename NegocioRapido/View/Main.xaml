@@ -10,59 +10,9 @@
     AllowsTransparency="True"
     Background="Transparent"
     ResizeMode="CanResizeWithGrip"
+    WindowStartupLocation="Manual"
     WindowStyle="None"
-    mc:Ignorable="d" WindowStartupLocation="Manual">
-    <Window.Resources>
-        <Style x:Key="font_style" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="View/Recursos/Roboto-Regular.ttf #Roboto" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Foreground" Value="#C08900" />
-            <Setter Property="FontSize" Value="20" />
-
-        </Style>
-        <Style x:Key="tt_style" TargetType="ToolTip">
-            <Setter Property="Placement" Value="Right" />
-            <Setter Property="Height" Value="40" />
-            <Setter Property="Width" Value="100" />
-            <Setter Property="Margin" Value="20,0,0,0" />
-            <Setter Property="Background" Value="#d4d4d4" />
-            <Setter Property="BorderBrush" Value="Transparent" />
-            <Setter Property="Foreground" Value="#C08900" />
-            <Setter Property="FontFamily" Value="View/Recursos/Roboto-Regular.ttf #Roboto" />
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="HorizontalOffset" Value="15" />
-            <Setter Property="VerticalOffset" Value="6" />
-            <Setter Property="HasDropShadow" Value="True" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-
-        </Style>
-        <ImageBrush
-            x:Key="imagen_btn_cerrar"
-            ImageSource="/View/Recursos/Iconos/IconoXRed.png"
-            Stretch="Fill" />
-        <Style x:Key="btn_cerrar" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border
-                            x:Name="button"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Background="{TemplateBinding Background}"
-                            BorderThickness="0"
-                            SnapsToDevicePixels="True" />
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="button" Property="Background" Value="{StaticResource imagen_btn_cerrar}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-        </Style>
-    </Window.Resources>
+    mc:Ignorable="d">
     <Border
         BorderBrush="#FFD261"
         BorderThickness="7"
@@ -319,9 +269,7 @@
                 Grid.Column="1"
                 Grid.ColumnSpan="4"
                 Background="White"
-                CornerRadius="20" >
-
-            </Border>
+                CornerRadius="20" />
             <!--  botonera de cierre  -->
             <Grid Grid.Column="5">
                 <Grid.ColumnDefinitions>

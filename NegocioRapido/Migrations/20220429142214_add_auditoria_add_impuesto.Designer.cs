@@ -11,26 +11,66 @@ using NegocioRapido.Model.Data;
 namespace NegocioRapido.Migrations
 {
     [DbContext(typeof(BaseDatos))]
-    [Migration("20220411051851_base_español")]
-    partial class base_español
+    [Migration("20220429142214_add_auditoria_add_impuesto")]
+    partial class add_auditoria_add_impuesto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("NegocioRapido.Model.Auditoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Estacion")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<bool?>("EstadoBorrado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("FechaActualizacion")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Modulo")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
+
+                    b.Property<string>("Observacion")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Operacion")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Auditoria");
+                });
 
             modelBuilder.Entity("NegocioRapido.Model.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("varchar(80)");
 
                     b.Property<string>("Correo")
                         .HasMaxLength(200)
@@ -44,30 +84,24 @@ namespace NegocioRapido.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("FechaActualizacion")
-                        .HasMaxLength(2)
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime?>("FechaBorrado")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<string>("Imagen")
                         .HasMaxLength(250)
                         .HasColumnType("varchar(250)");
 
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("varchar(80)");
-
-                    b.Property<string>("NumeroIdentficacion")
+                    b.Property<string>("NumeroIdentificacion")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
+
+                    b.Property<string>("RazonSocial")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
 
                     b.Property<string>("Telefono")
                         .HasMaxLength(20)
@@ -77,6 +111,9 @@ namespace NegocioRapido.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NumeroIdentificacion")
+                        .IsUnique();
 
                     b.ToTable("Clientes");
                 });
@@ -94,29 +131,26 @@ namespace NegocioRapido.Migrations
                     b.Property<bool?>("EstadoBorrado")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("EstadoCompra")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("FechaActualizacion")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime?>("FechaBorrado")
-                        .HasMaxLength(2)
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime?>("FechaCompra")
+                    b.Property<DateTime>("FechaCompra")
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime?>("FechaRecivido")
-                        .HasColumnType("datetime");
+                    b.Property<int>("NControl")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NFactura")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProveedorId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("ValorDolar")
+                        .HasColumnType("decimal(12,2)");
 
                     b.HasKey("Id");
 
@@ -137,23 +171,20 @@ namespace NegocioRapido.Migrations
                     b.Property<int>("CompraId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Costo")
-                        .HasColumnType("decimal(12,2)");
-
                     b.Property<bool?>("EstadoBorrado")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("FechaActualizacion")
-                        .HasMaxLength(2)
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime?>("FechaBorrado")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
+
+                    b.Property<decimal>("Impuesto")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(12,2)");
 
                     b.Property<int>("ProductoId")
                         .HasColumnType("int");
@@ -167,21 +198,39 @@ namespace NegocioRapido.Migrations
                     b.ToTable("CompraProductos");
                 });
 
+            modelBuilder.Entity("NegocioRapido.Model.Impuesto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Impuesto");
+                });
+
             modelBuilder.Entity("NegocioRapido.Model.Producto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("AlertaInventario")
+                    b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
-                    b.Property<bool>("AplicarIva")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint(1)")
-                        .HasDefaultValue(true);
-
                     b.Property<string>("CodBarras")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("CodProducto")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
@@ -194,35 +243,51 @@ namespace NegocioRapido.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("FechaActualizacion")
-                        .HasMaxLength(2)
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime?>("FechaBorrado")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<string>("Imagen")
                         .HasMaxLength(250)
                         .HasColumnType("varchar(250)");
 
-                    b.Property<int>("Inventario")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                    b.Property<decimal>("Impuesto")
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<decimal>("Precio")
+                    b.Property<decimal>("PorcentajeGanancia")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<decimal>("Precio1")
                         .HasColumnType("decimal(12,2)");
 
+                    b.Property<decimal>("Precio2")
+                        .HasColumnType("decimal(12,2)");
+
+                    b.Property<decimal>("Precio3")
+                        .HasColumnType("decimal(12,2)");
+
+                    b.Property<int?>("StockMax")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StockMin")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ValorDolar")
+                        .HasColumnType("decimal(12,2)");
+
+                    b.Property<bool>("visible")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CodBarras")
+                        .IsUnique();
 
                     b.ToTable("Productos");
                 });
@@ -249,30 +314,24 @@ namespace NegocioRapido.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("FechaActualizacion")
-                        .HasMaxLength(2)
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime?>("FechaBorrado")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<string>("Imagen")
                         .HasMaxLength(250)
                         .HasColumnType("varchar(250)");
 
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("NumeroIdentficacion")
+                    b.Property<string>("NumeroIdentificacion")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
+
+                    b.Property<string>("RazonSocial")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
 
                     b.Property<string>("Telefono")
                         .HasMaxLength(20)
@@ -282,6 +341,9 @@ namespace NegocioRapido.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NumeroIdentificacion")
+                        .IsUnique();
 
                     b.ToTable("Proveedores");
                 });
@@ -303,7 +365,6 @@ namespace NegocioRapido.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Correo")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
@@ -315,15 +376,9 @@ namespace NegocioRapido.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("FechaActualizacion")
-                        .HasMaxLength(2)
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime?>("FechaBorrado")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<string>("Imagen")
@@ -340,10 +395,15 @@ namespace NegocioRapido.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("NumeroIdentficacion")
+                    b.Property<string>("NumeroIdentificacion")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
+
+                    b.Property<string>("RazonSocial")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
 
                     b.Property<string>("Telefono")
                         .HasMaxLength(20)
@@ -357,9 +417,15 @@ namespace NegocioRapido.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(2);
 
+                    b.Property<bool>("status")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NombreUsuario")
+                        .IsUnique();
+
+                    b.HasIndex("NumeroIdentificacion")
                         .IsUnique();
 
                     b.ToTable("Usuarios");
@@ -377,25 +443,26 @@ namespace NegocioRapido.Migrations
                     b.Property<bool?>("EstadoBorrado")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("EstadoVenta")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(1);
-
                     b.Property<DateTime>("FechaActualizacion")
-                        .HasMaxLength(2)
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime?>("FechaBorrado")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
+
+                    b.Property<DateTime>("FechaVenta")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("NControl")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NFactura")
+                        .HasColumnType("int");
 
                     b.Property<int>("NombreVendedor")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("ValorDolar")
+                        .HasColumnType("decimal(12,2)");
 
                     b.HasKey("Id");
 
@@ -417,15 +484,9 @@ namespace NegocioRapido.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("FechaActualizacion")
-                        .HasMaxLength(2)
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime?>("FechaBorrado")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasMaxLength(2)
                         .HasColumnType("datetime");
 
                     b.Property<decimal>("Impuesto")
@@ -446,22 +507,18 @@ namespace NegocioRapido.Migrations
 
                     b.HasIndex("VentaId");
 
-                    b.ToTable("VentaProductos");
+                    b.ToTable("DetalleVenta");
                 });
 
-            modelBuilder.Entity("ProductoProveedor", b =>
+            modelBuilder.Entity("NegocioRapido.Model.Auditoria", b =>
                 {
-                    b.Property<int>("ProductosId")
-                        .HasColumnType("int");
+                    b.HasOne("NegocioRapido.Model.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("ProveedoresId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductosId", "ProveedoresId");
-
-                    b.HasIndex("ProveedoresId");
-
-                    b.ToTable("ProductoProveedor");
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("NegocioRapido.Model.Compra", b =>
@@ -522,21 +579,6 @@ namespace NegocioRapido.Migrations
                     b.Navigation("Producto");
 
                     b.Navigation("Venta");
-                });
-
-            modelBuilder.Entity("ProductoProveedor", b =>
-                {
-                    b.HasOne("NegocioRapido.Model.Producto", null)
-                        .WithMany()
-                        .HasForeignKey("ProductosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NegocioRapido.Model.Proveedor", null)
-                        .WithMany()
-                        .HasForeignKey("ProveedoresId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("NegocioRapido.Model.Cliente", b =>

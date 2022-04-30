@@ -11,7 +11,9 @@ namespace NegocioRapido.Model
     {
         public int Id { get; set; }
         [Column(TypeName = "decimal(12,2)")]
-        public decimal Costo { get; set; }
+        public decimal Precio { get; set; }
+        [Column(TypeName = "decimal(5,2)")]
+        public decimal Impuesto { get; set; }
         public int Cantidad { get; set; }
         // relations
         public int CompraId { get; set; }

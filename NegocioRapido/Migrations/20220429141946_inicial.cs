@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NegocioRapido.Migrations
 {
-    public partial class base_español : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,18 +19,15 @@ namespace NegocioRapido.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Apellido = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Correo = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaActualizacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaBorrado = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime", nullable: false),
+                    FechaActualizacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     EstadoBorrado = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     TipoIdentificacion = table.Column<int>(type: "int", nullable: false),
-                    NumeroIdentficacion = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                    NumeroIdentificacion = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    RazonSocial = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Correo = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Telefono = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -51,21 +48,28 @@ namespace NegocioRapido.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    CodProducto = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CodBarras = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Precio = table.Column<decimal>(type: "decimal(12,2)", nullable: false),
-                    AplicarIva = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true),
+                    Nombre = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Cantidad = table.Column<int>(type: "int", nullable: false),
+                    PorcentajeGanancia = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    ValorDolar = table.Column<decimal>(type: "decimal(12,2)", nullable: false),
+                    Precio1 = table.Column<decimal>(type: "decimal(12,2)", nullable: false),
+                    Precio2 = table.Column<decimal>(type: "decimal(12,2)", nullable: false),
+                    Precio3 = table.Column<decimal>(type: "decimal(12,2)", nullable: false),
+                    Impuesto = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     Descripcion = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Imagen = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Inventario = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
-                    AlertaInventario = table.Column<int>(type: "int", nullable: true),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaActualizacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaBorrado = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: true),
+                    visible = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    StockMax = table.Column<int>(type: "int", nullable: true),
+                    StockMin = table.Column<int>(type: "int", nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime", nullable: false),
+                    FechaActualizacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     EstadoBorrado = table.Column<bool>(type: "tinyint(1)", nullable: true)
                 },
                 constraints: table =>
@@ -80,18 +84,17 @@ namespace NegocioRapido.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Correo = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Descripcion = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaActualizacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaBorrado = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime", nullable: false),
+                    FechaActualizacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     EstadoBorrado = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     TipoIdentificacion = table.Column<int>(type: "int", nullable: false),
-                    NumeroIdentficacion = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                    NumeroIdentificacion = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    RazonSocial = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Correo = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Telefono = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -121,14 +124,16 @@ namespace NegocioRapido.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Apellido = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Correo = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaActualizacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaBorrado = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: true),
+                    status = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime", nullable: false),
+                    FechaActualizacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     EstadoBorrado = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     TipoIdentificacion = table.Column<int>(type: "int", nullable: false),
-                    NumeroIdentficacion = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                    NumeroIdentificacion = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    RazonSocial = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Correo = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Telefono = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -149,12 +154,14 @@ namespace NegocioRapido.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    EstadoVenta = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    NFactura = table.Column<int>(type: "int", nullable: false),
+                    NControl = table.Column<int>(type: "int", nullable: false),
+                    ValorDolar = table.Column<decimal>(type: "decimal(12,2)", nullable: false),
+                    FechaVenta = table.Column<DateTime>(type: "datetime", nullable: false),
                     ClienteId = table.Column<int>(type: "int", nullable: false),
                     NombreVendedor = table.Column<int>(type: "int", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaActualizacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaBorrado = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime", nullable: false),
+                    FechaActualizacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     EstadoBorrado = table.Column<bool>(type: "tinyint(1)", nullable: true)
                 },
                 constraints: table =>
@@ -175,15 +182,15 @@ namespace NegocioRapido.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    EstadoCompra = table.Column<int>(type: "int", nullable: false),
-                    FechaCompra = table.Column<DateTime>(type: "datetime", nullable: true),
-                    FechaRecivido = table.Column<DateTime>(type: "datetime", nullable: true),
+                    NFactura = table.Column<int>(type: "int", nullable: false),
+                    NControl = table.Column<int>(type: "int", nullable: false),
+                    ValorDolar = table.Column<decimal>(type: "decimal(12,2)", nullable: false),
+                    FechaCompra = table.Column<DateTime>(type: "datetime", nullable: false),
                     Descripcion = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ProveedorId = table.Column<int>(type: "int", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaActualizacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaBorrado = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime", nullable: false),
+                    FechaActualizacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     EstadoBorrado = table.Column<bool>(type: "tinyint(1)", nullable: true)
                 },
                 constraints: table =>
@@ -199,32 +206,7 @@ namespace NegocioRapido.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "ProductoProveedor",
-                columns: table => new
-                {
-                    ProductosId = table.Column<int>(type: "int", nullable: false),
-                    ProveedoresId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductoProveedor", x => new { x.ProductosId, x.ProveedoresId });
-                    table.ForeignKey(
-                        name: "FK_ProductoProveedor_Productos_ProductosId",
-                        column: x => x.ProductosId,
-                        principalTable: "Productos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductoProveedor_Proveedores_ProveedoresId",
-                        column: x => x.ProveedoresId,
-                        principalTable: "Proveedores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "VentaProductos",
+                name: "DetalleVenta",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -234,22 +216,21 @@ namespace NegocioRapido.Migrations
                     Cantidad = table.Column<int>(type: "int", nullable: false),
                     ProductoId = table.Column<int>(type: "int", nullable: false),
                     VentaId = table.Column<int>(type: "int", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaActualizacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaBorrado = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime", nullable: false),
+                    FechaActualizacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     EstadoBorrado = table.Column<bool>(type: "tinyint(1)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VentaProductos", x => x.Id);
+                    table.PrimaryKey("PK_DetalleVenta", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_VentaProductos_Productos_ProductoId",
+                        name: "FK_DetalleVenta_Productos_ProductoId",
                         column: x => x.ProductoId,
                         principalTable: "Productos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_VentaProductos_Ventas_VentaId",
+                        name: "FK_DetalleVenta_Ventas_VentaId",
                         column: x => x.VentaId,
                         principalTable: "Ventas",
                         principalColumn: "Id",
@@ -263,13 +244,13 @@ namespace NegocioRapido.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Costo = table.Column<decimal>(type: "decimal(12,2)", nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(12,2)", nullable: false),
+                    Impuesto = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     Cantidad = table.Column<int>(type: "int", nullable: false),
                     CompraId = table.Column<int>(type: "int", nullable: false),
                     ProductoId = table.Column<int>(type: "int", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaActualizacion = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: false),
-                    FechaBorrado = table.Column<DateTime>(type: "datetime", maxLength: 2, nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime", nullable: false),
+                    FechaActualizacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     EstadoBorrado = table.Column<bool>(type: "tinyint(1)", nullable: true)
                 },
                 constraints: table =>
@@ -291,6 +272,12 @@ namespace NegocioRapido.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Clientes_NumeroIdentificacion",
+                table: "Clientes",
+                column: "NumeroIdentificacion",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CompraProductos_CompraId",
                 table: "CompraProductos",
                 column: "CompraId");
@@ -306,9 +293,26 @@ namespace NegocioRapido.Migrations
                 column: "ProveedorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductoProveedor_ProveedoresId",
-                table: "ProductoProveedor",
-                column: "ProveedoresId");
+                name: "IX_DetalleVenta_ProductoId",
+                table: "DetalleVenta",
+                column: "ProductoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleVenta_VentaId",
+                table: "DetalleVenta",
+                column: "VentaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Productos_CodBarras",
+                table: "Productos",
+                column: "CodBarras",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Proveedores_NumeroIdentificacion",
+                table: "Proveedores",
+                column: "NumeroIdentificacion",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuarios_NombreUsuario",
@@ -317,14 +321,10 @@ namespace NegocioRapido.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_VentaProductos_ProductoId",
-                table: "VentaProductos",
-                column: "ProductoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VentaProductos_VentaId",
-                table: "VentaProductos",
-                column: "VentaId");
+                name: "IX_Usuarios_NumeroIdentificacion",
+                table: "Usuarios",
+                column: "NumeroIdentificacion",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ventas_ClienteId",
@@ -338,13 +338,10 @@ namespace NegocioRapido.Migrations
                 name: "CompraProductos");
 
             migrationBuilder.DropTable(
-                name: "ProductoProveedor");
+                name: "DetalleVenta");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
-
-            migrationBuilder.DropTable(
-                name: "VentaProductos");
 
             migrationBuilder.DropTable(
                 name: "Compras");

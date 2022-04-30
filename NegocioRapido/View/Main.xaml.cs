@@ -27,7 +27,7 @@ namespace NegocioRapido.View
         public Main()
         {
             InitializeComponent();
-            
+            contenedor_ventana.Child = new PrincipalCliente();
             
 
             
@@ -54,17 +54,17 @@ namespace NegocioRapido.View
         }
         private void btn_cerrar_ventana_Click(object sender, RoutedEventArgs e)
         {
-            
-            Window este = new Window();
-            este.Content = InputDataEntidad.getInstance(new Cliente());
-            este.WindowStyle = WindowStyle.None;
-            este.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            este.ShowInTaskbar = false;
-            este.Topmost = true;
-            este.Width = 400;
-            este.Height = 600;
-            este.ShowDialog();
-            
+
+            /* Window este = new Window();
+             este.Content = InputDataEntidad.getInstance(new Cliente());
+             este.WindowStyle = WindowStyle.None;
+             este.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+             este.ShowInTaskbar = false;
+             este.Topmost = true;
+             este.Width = 400;
+             este.Height = 600;
+             este.ShowDialog();*/
+            this.Close();
            
             
         }

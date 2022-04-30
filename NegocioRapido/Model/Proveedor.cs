@@ -15,8 +15,7 @@ namespace NegocioRapido.Model
         
         [MaxLength(200)]
         public string? Descripcion { get; set; }
-        //  relations
-        public virtual ICollection<Producto> Productos { get; private set; } = new ObservableCollection<Producto>();
+        //  relation
         public virtual ICollection<Compra> Compras { get; private set; } = new ObservableCollection<Compra>();
     }
 }

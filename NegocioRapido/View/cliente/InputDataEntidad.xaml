@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:NegocioRapido.View.cliente"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="500"
-    d:DesignWidth="400"
+    d:DesignWidth="300"
     mc:Ignorable="d">
     <Grid Margin="10" Background="White">
         <Grid.ColumnDefinitions>
@@ -33,7 +33,10 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Razón Social o Nombre" />
+            <Label
+                Grid.Row="0"
+                Content="Razón Social o Nombre"
+                Style="{StaticResource text_formulario}" />
             <TextBox
                 x:Name="tb_razon_social"
                 Grid.Row="1"
@@ -73,7 +76,8 @@
             <Label
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
-                Content="Numero de Identificación" />
+                Content="Numero de Identificación"
+                Style="{StaticResource text_formulario}" />
             <TextBox
                 x:Name="tb_identify_document"
                 Grid.Row="1"
@@ -97,7 +101,10 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Correo" />
+            <Label
+                Grid.Row="0"
+                Content="Correo"
+                Style="{StaticResource text_formulario}" />
             <TextBox
                 x:Name="tb_correo"
                 Grid.Row="1"
@@ -109,7 +116,7 @@
                 MaxLength="200"
                 Template="{DynamicResource TextBoxTemplate1}"
                 TextChanged="Text_Box_Is_Correo"
-                ToolTip="nombre de cliente o razon social en caso de empresa" />
+                ToolTip="correo debe lleva @xxx.xx" />
         </Grid>
         <Grid
             Grid.Row="4"
@@ -121,7 +128,10 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Direccion" />
+            <Label
+                Grid.Row="0"
+                Content="Direccion"
+                Style="{StaticResource text_formulario}" />
             <TextBox
                 x:Name="tb_direccion"
                 Grid.Row="1"
@@ -132,7 +142,7 @@
                 MaxLength="250"
                 Template="{DynamicResource TextBoxTemplate1}"
                 TextChanged="TextBox_TextChanged"
-                ToolTip="nombre de cliente o razon social en caso de empresa" />
+                ToolTip="direccion detallada" />
         </Grid>
         <Grid
             Grid.Row="0"
@@ -146,8 +156,8 @@
 
             <Border
                 Grid.Row="0"
-                MaxWidth="180"
-                MaxHeight="200"
+                MaxWidth="125"
+                MaxHeight="140"
                 BorderBrush="#FF1C3A4A"
                 BorderThickness="15">
 
@@ -158,6 +168,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Cursor="Hand"
+                    MouseDown="imagen_MouseDown"
                     Source="/View/Recursos/Iconos/IconoImageAdd.png"
                     Stretch="UniformToFill" />
             </Border>
@@ -182,7 +193,10 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Telefono" />
+            <Label
+                Grid.Row="0"
+                Content="Telefono"
+                Style="{StaticResource text_formulario}" />
             <TextBox
                 x:Name="tb_telefono"
                 Grid.Row="1"
@@ -193,7 +207,7 @@
                 MaxLength="20"
                 PreviewKeyDown="Text_Box_Solo_Numeros_telefono"
                 Template="{DynamicResource TextBoxTemplate1}"
-                ToolTip="nombre de cliente o razon social en caso de empresa" />
+                ToolTip="telefono en formato +xx xxxxxxxxx" />
         </Grid>
         <!--  stack botones  -->
         <StackPanel

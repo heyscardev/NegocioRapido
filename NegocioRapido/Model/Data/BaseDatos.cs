@@ -22,24 +22,20 @@ namespace NegocioRapido.Model.Data
         public DbSet<Compra> Compras { get; set; }
         public DbSet<CompraProducto> CompraProductos { get; set; }
         public DbSet<Venta> Ventas { get; set; }
-        public DbSet<VentaProducto> VentaProductos { get; set; }
+        public DbSet<VentaProducto> DetalleVenta { get; set; }
+        public DbSet<Auditoria> Auditoria { get; set; }
+        public DbSet<Impuesto> Impuesto { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Producto>(entity =>
             {
                 //añadiendo valores por defecto a columnas de product
-                entity.Property(p => p.AplicarIva)
-                .HasDefaultValue(true);
-                entity.Property(p => p.Inventario)
-                .HasDefaultValue(0);
+                entity.HasIndex(p => p.CodBarras)
+                  .IsUnique();
             });
            
-            builder.Entity<Venta>(entity =>
-            {
-                entity.Property(p => p.EstadoVenta)
-                .HasDefaultValue(EstadoVenta.Pendiente);
-            });
+           
             builder.Entity<Usuario>(entity =>
             {
                 entity.Property(p => p.TipoUsuario)
@@ -58,7 +54,8 @@ namespace NegocioRapido.Model.Data
                     .UseMySql(CONFIGURATION["ConnectionsStrings:DefaultConnection"], new MariaDbServerVersion(new Version()))
                     .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information)
                     .EnableSensitiveDataLogging()
-                    .EnableDetailedErrors();
+                    .EnableDetailedErrors()
+                    ;
             }
         }
 

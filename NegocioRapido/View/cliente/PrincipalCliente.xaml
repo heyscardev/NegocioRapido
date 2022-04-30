@@ -8,11 +8,11 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid Background="red">
+    <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -22,5 +22,55 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="30,0,0,0"
+            FontSize="30"
+            FontWeight="Bold"
+            Foreground="{StaticResource azul1}"
+            Style="{StaticResource font_style}"
+            Text="Clientes"
+            TextDecorations="Underline" />
+        <Border
+            x:Name="datos"
+            Grid.Row="0"
+            Grid.RowSpan="6"
+            Grid.Column="2"
+            Width="350"
+            Margin="0,0,0,0"
+            Padding="0"
+            BorderBrush="#FFFFD261"
+            BorderThickness="5,0,0,0" />
+        <DataGrid
+            x:Name="tabla"
+            Grid.Row="1"
+            Grid.RowSpan="4"
+            Grid.ColumnSpan="2"
+            Margin="0,0,50,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            d:ItemsSource="{d:SampleData ItemCount=5}"
+            Style="{DynamicResource tablas}"
+            UseLayoutRounding="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
+                <DataGridTextColumn Binding="{Binding RazonSocial}" Header="Razon Social" />
+                <DataGridTextColumn Binding="{Binding Telefono}" Header="Telefono" />
+                <DataGridTextColumn Binding="{Binding Correo}" Header="Correo" />
+                <DataGridTextColumn Header="Identificacion">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0}-{1}">
+                            <Binding Path="TipoIdentificacion" />
+                            <Binding Path="NumeroIdentificacion" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+
     </Grid>
 </UserControl>

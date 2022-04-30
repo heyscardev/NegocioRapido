@@ -1,14 +1,19 @@
-﻿using NegocioRapido.Model.enums;
+﻿using Microsoft.EntityFrameworkCore;
+using NegocioRapido.Model.enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NegocioRapido.Model.Data
 {
+    [Index("NumeroIdentificacion", IsUnique = true)]
     public class PersonaBaseData : BaseData
     {
         public TipoIdentificacion TipoIdentificacion { get; set; }
         [MaxLength(20)]
-        public string NumeroIdentficacion { get; set; }
+        
+        public string NumeroIdentificacion { get; set; }
         [MaxLength(80)]
+       
         public string RazonSocial { get; set; }
         [MaxLength(200)]
         public string? Correo { get; set; }

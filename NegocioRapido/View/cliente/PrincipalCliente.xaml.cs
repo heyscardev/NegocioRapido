@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NegocioRapido.Model;
+using NegocioRapido.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,15 @@ namespace NegocioRapido.View.cliente
         public PrincipalCliente()
         {
             InitializeComponent();
+            datos.Child = InputDataEntidad.getInstance();
+            actualizar_datos();
+        }
+        private void actualizar_datos()
+        {
+            
+          
+            tabla.ItemsSource = Datos.getBaseDatos().Clientes.ToList();
+            
         }
     }
 }

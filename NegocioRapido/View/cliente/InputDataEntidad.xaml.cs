@@ -50,7 +50,7 @@ namespace NegocioRapido.View.cliente
                 input.Modify = true;
                 input.tb_razon_social.Text = cliente.RazonSocial;
                 input.combo_document.Items.Contains(cliente.TipoIdentificacion);
-                input.tb_identify_document.Text = cliente.NumeroIdentficacion;
+               
                 input.tb_direccion.Text = cliente.Direccion;
                 input.tb_correo.Text = cliente.Correo;
                 input.imagen.Source = cliente.Imagen == null ?
@@ -121,6 +121,16 @@ namespace NegocioRapido.View.cliente
                 obj.Background = Brushes.White;
         }
 
-       
+        private void imagen_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.Filter = "Files|*.jpg;*.jpeg;*.png;";
+            file.Title = "IMAGEN DE USUARIO";
+
+            if (file.ShowDialog() == true)
+            {
+                imagen.Source = (new BitmapImage(new Uri(file.FileName, UriKind.Absolute)));
+            }
+        }
     }
 }
